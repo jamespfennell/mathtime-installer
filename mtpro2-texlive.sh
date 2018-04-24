@@ -197,6 +197,7 @@ unzip_and_copy () {
 	# Then, copy over the new files
 	echo "Copying files."
 	echo "Coping all files in ${TEMPDIR}/texmf/ to ${TEXMF}/." >> $LOGFILE
+        sudo mkdir -p ${TEXMF}
 	sudo cp -r ${TEMPDIR}/texmf/* ${TEXMF}/
 
 	#Remove the temporary directory
