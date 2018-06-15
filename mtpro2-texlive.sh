@@ -39,6 +39,8 @@ echo "$(tex --version)" >> $LOGFILE
 UPDCFG=`kpsewhich updmap.cfg`
 echo "updmap.cfg is at $UPDCFG" >> $LOGFILE
 TEXMF=`kpsewhich --var-value TEXMFLOCAL`
+# get first element if TEXMF is colon-seperated list
+TEXMF=${TEXMF%%:*}
 echo "The texmf directory for fonts is $TEXMF" >> $LOGFILE
 
 
