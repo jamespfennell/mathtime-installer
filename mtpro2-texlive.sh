@@ -196,10 +196,15 @@ unzip_and_copy () {
 	echo "Removing previous MTPro2 files, as a precaution." >> $LOGFILE
 	remove_mtpro2_files
 
+	# Copy the texmf directory to the top level in the temporary directory.
+	# This is to support the mtp2lite fonts acquired from CTAN.
+	echo "Making sure texmf/ is in the top level of ${TEMPDIR}." >> $LOGFILE
+	sudo mv -f ${TEMPDIR}/mtp2lite/texmf/ ${TEMPDIR}/ 2>/dev/null
+
 	# Then, copy over the new files
 	echo "Copying files."
-	echo "Coping all files in ${TEMPDIR}/texmf/ to ${TEXMF}/." >> $LOGFILE
-        sudo mkdir -p ${TEXMF}
+	echo "Copying all files in ${TEMPDIR}/texmf/ to ${TEXMF}/." >> $LOGFILE
+	sudo mkdir -p ${TEXMF}
 	sudo cp -r ${TEMPDIR}/texmf/* ${TEXMF}/
 
 	#Remove the temporary directory
